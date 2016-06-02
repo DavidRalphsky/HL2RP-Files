@@ -1,1 +1,0 @@
-~"dayv":n1;"hourv":n0;"minutev":n18;
