@@ -11,7 +11,7 @@ function ITEM:OnDrop(player, position) end;
 
 -- Called when a player uses the item.
 function ITEM:OnUse(player, itemEntity)
-        player:SendLua("gui.OpenURL('http://hollowpointrp.enjin.com/shadow/m/32509176/viewthread/22639182-combine-civil-authority-field-manual')")
+        player:SendLua("gui.OpenURL('http://www.google.com/')")
 		return true;
 end;
 
