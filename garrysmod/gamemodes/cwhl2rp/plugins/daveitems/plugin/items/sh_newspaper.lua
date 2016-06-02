@@ -17,7 +17,7 @@ ITEM.description = "A dirty newspaper.";
 function ITEM:OnDrop(player, position) end;
 
 function ITEM:OnUse(player, itemEntity)
-	player:SendLua("gui.OpenURL('http://hollowpointrp.enjin.com/")
+	player:SendLua("gui.OpenURL('")
 	return true;
 end;
 
