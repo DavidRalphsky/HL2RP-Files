@@ -1,0 +1,1 @@
+~"crossserverchatv":b1"allowedpropsv":b1

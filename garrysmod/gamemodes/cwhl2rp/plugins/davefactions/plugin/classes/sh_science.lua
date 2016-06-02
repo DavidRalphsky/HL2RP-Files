@@ -1,0 +1,9 @@
+local CLASS = Clockwork.class:New("Combine Civil Authority Science Division");
+	CLASS.color = Color(255, 200, 100, 255);
+	CLASS.wages = 50;
+	CLASS.factions = {FACTION_SCIENCE};
+	CLASS.isDefault = true;
+	CLASS.wagesName = "Allowance";
+	CLASS.description = "A human scientist employed by the Universal Union.";
+	CLASS.defaultPhysDesc = "Wearing a clean white lab coat";
+CLASS_SCIENCE = CLASS:Register();

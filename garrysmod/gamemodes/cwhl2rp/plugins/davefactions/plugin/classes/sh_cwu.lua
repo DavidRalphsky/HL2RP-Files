@@ -1,0 +1,9 @@
+local CLASS = Clockwork.class:New("Civil Worker's Union");
+	CLASS.color = Color(235, 180, 80, 255);
+	CLASS.wages = 0;
+	CLASS.factions = {FACTION_CWU};
+	CLASS.isDefault = true;
+	CLASS.wagesName = "Paycheck";
+	CLASS.description = "A higher level of working-class citizen.";
+	CLASS.defaultPhysDesc = "A citizen in a tan jumpsuit.";
+CLASS_CWU = CLASS:Register();

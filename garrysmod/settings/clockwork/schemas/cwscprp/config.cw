@@ -1,0 +1,1 @@
+~"enable_crosshairv":{~"defaultv":b1"valuev":b0}"disable_spraysv":{~"defaultv":b1"valuev":b0}"enable_gravgun_puntv":{~"defaultv":b1"valuev":b0}"default_inv_weightv":{~"defaultv":n20;"valuev":n6}"door_costv":{~"defaultv":n10;"valuev":n0}
