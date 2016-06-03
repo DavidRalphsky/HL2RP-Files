@@ -5,3 +5,5 @@ If you need to contact me, add me at http://www.steamcommunity.com/id/DavidRalph
 You can use the plugins under my name (check the plugin.ini). I don't care.
 
 Addons: http://www.mediafire.com/download/pop6z8o8wzfasti/HL2RP-Addons.rar
+
+You can find the official Clockwork files at: https://github.com/CloudSixteen/Clockwork
