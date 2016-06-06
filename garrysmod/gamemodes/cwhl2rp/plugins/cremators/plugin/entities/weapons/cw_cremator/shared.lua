@@ -98,7 +98,10 @@ function SWEP:PrimaryAttack()
 	local hit = trace.HitPos
 	attach = vm:LookupAttachment("muzzle")
 	vstr = tostring(self.Weapon)
-	local MuzzlePos = self.Owner:GetShootPos() + (self.Owner:GetRight() * 6) + (self.Owner:GetUp() * -9) + (self.Owner:GetForward() * 30)
+	
+	local muzattachment = self.Owner:LookupAttachment("muzzle")
+	local MuzzlePos = self.Owner:GetAttachment(muzattachment).Pos
+	
 	self:lase(vstr, attach, MuzzlePos, hit, 1)
 	self:lase(vstr, attach, MuzzlePos, hit, 0)
 	self.Owner:ViewPunch( Angle( math.random(-.01, .01), math.random(-.01, .01), math.random(-.01, .01) ) )
@@ -142,7 +145,10 @@ function SWEP:SecondaryAttack()
 	local hit = trace.HitPos
 	attach = vm:LookupAttachment("muzzle")
 	vstr = tostring(self.Weapon)
-	local MuzzlePos = self.Owner:GetShootPos() + (self.Owner:GetRight() * 6) + (self.Owner:GetUp() * -9) + (self.Owner:GetForward() * 30)
+	
+	local muzattachment = self.Owner:LookupAttachment("muzzle")
+	local MuzzlePos = self.Owner:GetAttachment(muzattachment).Pos
+	
 	self:lase2(vstr, attach, MuzzlePos, hit, 1)
 	self:lase2(vstr, attach, MuzzlePos, hit, 0)
 	self.Owner:ViewPunch( Angle( math.random(-.01, .01), math.random(-.01, .01), math.random(-.01, .01) ) )
