@@ -10,15 +10,15 @@ if CLIENT then
 language.Add("weapon_immolator", "Immolator")
 
 SWEP.PrintName 			= "Immolator"
-SWEP.Slot 				= 5
+SWEP.Slot 			= 5
 SWEP.SlotPos			= 6
 SWEP.DrawAmmo 			= false
 SWEP.DrawCrosshair 		= false
 SWEP.ViewModelFOV 		= 58
 SWEP.ViewModelFlip 		= false
-SWEP.DrawWeaponInfoBox	= false
+SWEP.DrawWeaponInfoBox		= false
 SWEP.WepSelectIcon 		= surface.GetTextureID("HUD/swepicons/weapon_immolator") 
-SWEP.BounceWeaponIcon 	= false 
+SWEP.BounceWeaponIcon 		= false 
 SWEP.Instructions 		= "For cleanup."
 end
 
@@ -33,6 +33,7 @@ SWEP.AutoSwitchFrom		= false
 
 
 -----------------------------------------------------------------------------------------------------------
+
 game.AddAmmoType( { name = "bp_immolator" } )
 if ( CLIENT ) then language.Add( "bp_immolator_ammo", "Plasma" ) end
 
@@ -40,19 +41,20 @@ SWEP.Primary.NeverRaised = true;
 SWEP.Primary.ClipSize		= -1
 SWEP.Primary.DefaultClip	= 1000
 SWEP.Primary.Automatic		= true
-SWEP.Primary.Ammo			= "bp_immolator"
-SWEP.Primary.Damage			= 50
-SWEP.Primary.Recoil			= 0
+SWEP.Primary.Ammo		= "bp_immolator"
+SWEP.Primary.Damage		= 50
+SWEP.Primary.Recoil		= 0
 
-SWEP.Secondary.DefaultClip = 0;
-SWEP.Secondary.Automatic = false;
-SWEP.Secondary.ClipSize = -1;
-SWEP.Secondary.Delay = 0;
-SWEP.Secondary.Ammo	= "";
+SWEP.Secondary.DefaultClip 	= 0;
+SWEP.Secondary.Automatic 	= false;
+SWEP.Secondary.ClipSize 	= -1;
+SWEP.Secondary.Delay 		= 0;
+SWEP.Secondary.Ammo		= "";
 
-SWEP.ViewModel				= "models/weapons/v_punch.mdl"
-SWEP.WorldModel				= "models/weapons/w_fists_t.mdl"
+SWEP.ViewModel			= "models/weapons/v_punch.mdl"
+SWEP.WorldModel			= "models/weapons/w_fists_t.mdl"
 SWEP.HoldType        		= "fist"
+
 ---------------------------------------------------------------------------------------------------------------------------------
 
 SWEP.Sound = Sound ("weapons/1immolator/plasma_shoot.wav")
@@ -191,11 +193,12 @@ function SWEP:Think()
 			end
 		end
 		if not self.Owner:Alive() then
-		self:EndSound()
+			self:EndSound()
 		end
+		
 		self.LastFrame = CurTime()
 		self.Weapon:SetNWBool ("on", self.SoundPlaying)
-			end
+	end
 end
 
 function SWEP:Deploy()
@@ -204,11 +207,11 @@ function SWEP:Deploy()
 	self:SetNextSecondaryFire( CurTime() + self:SequenceDuration())
 	self:NextThink( CurTime() + self:SequenceDuration() )
 	self:Idle()
-   return true
+   	return true
 end
 
 function SWEP:ShootEffects()
-self.Weapon:SendWeaponAnim( ACT_VM_PRIMARYATTACK )
+	self.Weapon:SendWeaponAnim( ACT_VM_PRIMARYATTACK )
 	self.Owner:MuzzleFlash()								
 	self.Owner:SetAnimation( PLAYER_ATTACK1 )
 end
@@ -250,6 +253,7 @@ function SWEP:IsUnderWater()
 			hitdie:Fire("hurt","",0.1); -- ACTIVATE THE POINT_HURT
 			hitdie:Fire("kill","",1.2);
 		end
+		
 		self:EmitSound("ambient/energy/weld"..math.random(1,2)..".wav")
 		self:SetNextPrimaryFire(CurTime()+0.8)
 		self:SetNextSecondaryFire(CurTime()+0.8)
@@ -260,9 +264,10 @@ function SWEP:lase(par, stat, from, to, noise)
 	if SERVER then
 	 
 	entItem = ents.Create ("info_target")
-	realName = "entItem"..tostring(self.Owner:GetName())
+		realName = "entItem"..tostring(self.Owner:GetName())
 		entItem:SetKeyValue("targetname", realName)
-	entItem:Spawn()
+		entItem:Spawn()
+		
 	beam = ents.Create("env_laser")
 		beam:SetKeyValue("renderamt", "255")
 		beam:SetKeyValue("rendercolor", "0 255 0")
@@ -276,21 +281,23 @@ function SWEP:lase(par, stat, from, to, noise)
 		beam:SetKeyValue("LaserTarget", realName)//"entItem")
 		beam:SetKeyValue("TouchType", "2")
 		beam:SetKeyValue("NoiseAmplitude", noise)
-	beam:Spawn()
+		beam:Spawn()
+	
 	tent = ents.Create("point_tesla")
-	tent:SetKeyValue("texture","sprites/laserbeam.spr")
-	tent:SetKeyValue("m_Color","0 255 0 255")
-	tent:SetKeyValue("m_flRadius","150")
-	tent:SetKeyValue("beamcount_min","20")
-	tent:SetKeyValue("beamcount_max","50")
-	tent:SetKeyValue("lifetime_min","0.05")
-	tent:SetKeyValue("lifetime_max","0.06")
-	tent:SetKeyValue("interval_min","0.1")
-	tent:SetKeyValue("interval_max","0.35")
-	tent:SetPos(to)
-	tent:Spawn()
-	tent:Activate()
-	tent:Fire("TurnOn","",0)
+		tent:SetKeyValue("texture","sprites/laserbeam.spr")
+		tent:SetKeyValue("m_Color","0 255 0 255")
+		tent:SetKeyValue("m_flRadius","150")
+		tent:SetKeyValue("beamcount_min","20")
+		tent:SetKeyValue("beamcount_max","50")
+		tent:SetKeyValue("lifetime_min","0.05")
+		tent:SetKeyValue("lifetime_max","0.06")
+		tent:SetKeyValue("interval_min","0.1")
+		tent:SetKeyValue("interval_max","0.35")
+		tent:SetPos(to)
+		tent:Spawn()
+		tent:Activate()
+		tent:Fire("TurnOn","",0)
+	
 	aoe = ents.Create("env_beam")
 		aoe:SetKeyValue("renderamt", "255")
 		aoe:SetKeyValue("rendercolor", "0 255 0")
@@ -302,15 +309,20 @@ function SWEP:lase(par, stat, from, to, noise)
 		aoe:SetKeyValue("NoiseAmplitude", "7")
 		aoe:SetKeyValue("texture", "sprites/laserbeam.spr")
 		aoe:SetKeyValue("dissolvetype", "2")
-	aoe:Fire("TurnOn", "", 0.01)
-	aoe:SetPos(to)
-	aoe:Fire("kill", "", 0.11)
-	beam:Fire("TurnOn", "", 0.01)
-	beam:Fire("kill", "", 0.11)
+		aoe:Fire("TurnOn", "", 0.01)
+		aoe:SetPos(to)
+		aoe:Fire("kill", "", 0.11)
+		beam:Fire("TurnOn", "", 0.01)
+		beam:Fire("kill", "", 0.11)
+	
 	entItem:Fire("kill", "", 0.11)
+	
 	tent:Fire("Kill","",0.11)
+	
 	entItem:SetPos(to)
+	
 	beam:SetPos(from)
+	
 	end
 end
 
@@ -318,9 +330,10 @@ function SWEP:lase2(par, stat, from, to, noise)
 	if SERVER then
 	 
 	entItem = ents.Create ("info_target")
-	realName = "entItem"..tostring(self.Owner:GetName())
+		realName = "entItem"..tostring(self.Owner:GetName())
 		entItem:SetKeyValue("targetname", realName)
-	entItem:Spawn()
+		entItem:Spawn()
+		
 	beam = ents.Create("env_laser")
 		beam:SetKeyValue("renderamt", "255")
 		beam:SetKeyValue("rendercolor", "0 255 0")
@@ -334,21 +347,23 @@ function SWEP:lase2(par, stat, from, to, noise)
 		beam:SetKeyValue("LaserTarget", realName)//"entItem")
 		beam:SetKeyValue("TouchType", "2")
 		beam:SetKeyValue("NoiseAmplitude", noise)
-	beam:Spawn()
+		beam:Spawn()
+		
 	tent = ents.Create("point_tesla")
-	tent:SetKeyValue("texture","sprites/laserbeam.spr")
-	tent:SetKeyValue("m_Color","0 255 0 255")
-	tent:SetKeyValue("m_flRadius","150")
-	tent:SetKeyValue("beamcount_min","20")
-	tent:SetKeyValue("beamcount_max","50")
-	tent:SetKeyValue("lifetime_min","0.05")
-	tent:SetKeyValue("lifetime_max","0.06")
-	tent:SetKeyValue("interval_min","0.1")
-	tent:SetKeyValue("interval_max","0.35")
-	tent:SetPos(to)
-	tent:Spawn()
-	tent:Activate()
-	tent:Fire("TurnOn","",0)
+		tent:SetKeyValue("texture","sprites/laserbeam.spr")
+		tent:SetKeyValue("m_Color","0 255 0 255")
+		tent:SetKeyValue("m_flRadius","150")
+		tent:SetKeyValue("beamcount_min","20")
+		tent:SetKeyValue("beamcount_max","50")
+		tent:SetKeyValue("lifetime_min","0.05")
+		tent:SetKeyValue("lifetime_max","0.06")
+		tent:SetKeyValue("interval_min","0.1")
+		tent:SetKeyValue("interval_max","0.35")
+		tent:SetPos(to)
+		tent:Spawn()
+		tent:Activate()
+		tent:Fire("TurnOn","",0)
+		
 	aoe = ents.Create("env_beam")
 		aoe:SetKeyValue("renderamt", "255")
 		aoe:SetKeyValue("rendercolor", "0 255 0")
@@ -360,15 +375,21 @@ function SWEP:lase2(par, stat, from, to, noise)
 		aoe:SetKeyValue("NoiseAmplitude", "7")
 		aoe:SetKeyValue("texture", "sprites/laserbeam.spr")
 		aoe:SetKeyValue("dissolvetype", "2")
-	aoe:Fire("TurnOn", "", 0.01)
-	aoe:SetPos(to)
-	aoe:Fire("kill", "", 0.11)
+		aoe:Fire("TurnOn", "", 0.01)
+		aoe:SetPos(to)
+		aoe:Fire("kill", "", 0.11)
+	
 	beam:Fire("TurnOn", "", 0.01)
 	beam:Fire("kill", "", 0.11)
+	
 	entItem:Fire("kill", "", 0.11)
+	
 	tent:Fire("Kill","",0.11)
+	
 	entItem:SetPos(to)
+	
 	beam:SetPos(from)
+	
 	end
 end
 
@@ -377,8 +398,14 @@ function SWEP:CreateSound ()
 	self.SoundObject:Play()
 end
 
-function SWEP:Holster() self:EndSound() return true end
-function SWEP:OwnerChanged() self:EndSound() end
+function SWEP:Holster() 
+	self:EndSound() 
+	return true 
+end
+
+function SWEP:OwnerChanged() 
+	self:EndSound() 
+end
 
 function SWEP:EndSound ()
 	if self.SoundObject then
