@@ -4,7 +4,7 @@
 --]]
 
 local ITEM = Clockwork.item:New("weapon_base");
-	ITEM.name = "Single SHot Sniper Rifle";
+	ITEM.name = "Single Shot Sniper Rifle";
 	ITEM.cost = 2800;
 	ITEM.model = "models/rtb_weapons/w_sniper.mdl";
 	ITEM.weight = 5;
